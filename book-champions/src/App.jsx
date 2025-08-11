@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
-import BookItem from "./components/bookItem/BookItem";
 import Books from "./components/books/Books";
+import NewBook from "./components/newBook/NewBook";
 
-const books = [
+const BooksInitial = [
   {
     title: "100 años de soledad",
     author: "Gabriel García Marquez",
@@ -44,11 +44,20 @@ const books = [
 ];
 
 const App = () => {
+  const [books, setBooks] = useState(BooksInitial);
+  const handleBookAdded = (enteredBook) => {
+    const bookData = {
+      ...enteredBook,
+      id: Math.random(),
+    };
+    setBooks((prevBooks) => [...prevBooks, bookData]);
+  };
   return (
     <>
       <div>
         <h2>Books Champios App</h2>
         <p>Quiero leer libros!</p>
+        <NewBook onBookAdded={handleBookAdded} />
         <Books books={books} />
       </div>
     </>
