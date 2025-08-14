@@ -1,22 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import BookItem from "../bookItem/BookItem";
 import NewBook from "../newBook/NewBook";
+import BookSearch from "../bookSearch/BookSearch";
 
 const Books = ({ books }) => {
+  const [search, setSearch] = useState("");
+  const handleSearch = (value) => {
+    setSearch(value);
+  };
+  const filteredBooks = books
+    .filter((book) =>
+      search
+        ? book.title.toLowerCase().includes(search.toLowerCase()) ||
+          book.author.toLowerCase().includes(search.toLowerCase())
+        : book
+    )
+    .map((book) => (
+      <BookItem
+        key={book.id}
+        title={book.title}
+        author={book.author}
+        rating={book.rating}
+        pageCount={book.pageCount}
+        imageUrl={book.imageUrl}
+        available={book.available}
+      />
+    ));
   return (
     <>
       <div className="d-flex justify-content-center flex-wrap my-5">
-        {books.map((book) => (
-          <BookItem
-            key={book.id}
-            title={book.title}
-            author={book.author}
-            rating={book.rating}
-            pageCount={book.pageCount}
-            imageUrl={book.imageUrl}
-            available={book.available}
-          />
-        ))}
+        <div className="container max-w-50 d-flex justify-content-center flex-wrap">
+          <BookSearch onSearch={handleSearch} search={search} />
+        </div>
+        <div className="container d-flex justify-content-center flex-wrap">
+          {filteredBooks.length ? (
+            filteredBooks
+          ) : (
+            <p>No se encontraron libros</p>
+          )}
+        </div>
       </div>
     </>
   );

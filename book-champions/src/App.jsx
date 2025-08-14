@@ -3,6 +3,7 @@ import "./App.css";
 
 import Books from "./components/books/Books";
 import NewBook from "./components/newBook/NewBook";
+import BookSearch from "./components/bookSearch/BookSearch";
 
 const BooksInitial = [
   {
@@ -45,6 +46,7 @@ const BooksInitial = [
 
 const App = () => {
   const [books, setBooks] = useState(BooksInitial);
+
   const handleBookAdded = (enteredBook) => {
     const bookData = {
       ...enteredBook,
@@ -54,10 +56,11 @@ const App = () => {
   };
   return (
     <>
-      <div>
-        <h2>Books Champios App</h2>
-        <p>Quiero leer libros!</p>
+      <div className="d-flex flex-column align-items-lg-center">
+        <h2>Book champions app</h2>
+        <p>¡Quiero leer libros!</p>
         <NewBook onBookAdded={handleBookAdded} />
+
         <Books books={books} />
       </div>
     </>

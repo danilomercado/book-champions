@@ -17,7 +17,7 @@ const BookItem = ({
         <Card.Body>
           <div className="mb-2">
             {available ? (
-              <Badge bg="succes" color="black">
+              <Badge bg="success" color="black">
                 Disponible
               </Badge>
             ) : (

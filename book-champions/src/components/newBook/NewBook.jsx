@@ -25,7 +25,7 @@ const NewBook = ({ onBookAdded }) => {
     setImageUrl(e.target.value);
   };
   const handleAvailabilityChange = (e) => {
-    setAvailable(e.target.value);
+    setAvailable(e.target.checked);
   };
 
   const handleAddBook = (e) => {
@@ -51,7 +51,7 @@ const NewBook = ({ onBookAdded }) => {
 
   return (
     <>
-      <Card className="m-4 w-50" bg="success">
+      <Card className="m-4 w-50 " bg="success">
         <Card.Body>
           <Form className="text-white" onSubmit={handleAddBook}>
             <Row>
