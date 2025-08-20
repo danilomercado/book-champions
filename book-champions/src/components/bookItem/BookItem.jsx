@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Badge, Card, Button } from "react-bootstrap";
+import DeleteModal from "../ui/deleteModal/DeleteModal";
 
 const BookItem = ({
   title,
@@ -31,6 +32,7 @@ const BookItem = ({
           </div>
           <p>{pageCount} paginas</p>
           <Button>Actualizar titulo</Button>
+          <DeleteModal />
         </Card.Body>
       </Card>
     </>
