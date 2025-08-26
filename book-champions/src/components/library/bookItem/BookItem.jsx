@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Badge, Card, Button } from "react-bootstrap";
-import DeleteModal from "../ui/deleteModal/DeleteModal";
+import DeleteModal from "../../ui/deleteModal/DeleteModal";
 
 const BookItem = ({
   title,

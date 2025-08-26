@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import BookItem from "../bookItem/BookItem";
-import NewBook from "../newBook/NewBook";
 import BookSearch from "../bookSearch/BookSearch";
 
-const Books = ({ books }) => {
+const Books = ({ books, onBookDeleted }) => {
   const [search, setSearch] = useState("");
   const handleSearch = (value) => {
     setSearch(value);
   };
+
   const filteredBooks = books
     .filter((book) =>
       search
@@ -24,6 +24,7 @@ const Books = ({ books }) => {
         pageCount={book.pageCount}
         imageUrl={book.imageUrl}
         available={book.available}
+        onBookDeleted={onBookDeleted}
       />
     ));
   return (
