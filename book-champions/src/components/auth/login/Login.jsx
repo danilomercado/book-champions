@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
 import { Button, Card, Col, Form, FormGroup, Row } from "react-bootstrap";
+import { Navigate, useNavigate } from "react-router";
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({
@@ -9,6 +10,7 @@ const Login = () => {
     password: false,
   });
 
+  const navigate = useNavigate();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -30,7 +32,7 @@ const Login = () => {
       alert("Email vacio");
       emailRef.current.focus();
       return;
-    } else if (!password.length || password.length > 6) {
+    } else if (!password.length || password.length < 6) {
       setErrors({ ...errors, password: true });
       alert("Contraseña erronea");
       passwordRef.current.focus();
@@ -39,8 +41,10 @@ const Login = () => {
     setErrors({ email: false, password: false });
     alert(`El email ingresado es: ${email} y el password es ${password}`);
 
+    onLogin();
     setEmail("");
     setPassword("");
+    navigate("/");
   };
 
   return (
